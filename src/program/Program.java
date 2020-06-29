@@ -3,6 +3,8 @@ package program;
 import java.util.Date;
 import java.util.Locale;
 
+import model.dao.DAOFactory;
+import model.dao.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -15,5 +17,7 @@ public class Program {
 		Seller seller = new Seller(5, "Cristiano", "CristianoCosta@hotmail.com", new Date(), 1500.0 , obj);
 
 		System.out.println(seller);
+		
+		SellerDAO sellerDAO = DAOFactory.createSellerDAO();
 	}
 }
