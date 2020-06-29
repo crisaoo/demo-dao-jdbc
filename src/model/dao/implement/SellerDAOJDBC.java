@@ -40,21 +40,14 @@ public class SellerDAOJDBC implements SellerDAO {
 		ResultSet rs = null;
 		
 		try {
-			pst = conn.prepareStatement("SELECT s.*, d.name as DepartmentName "
-													+ "FROM seller as s   INNER JOIN department as d "
-													+ "on s.departmentid = d.id   where s.id = ?");
+			pst = conn.prepareStatement("SELECT s.*, d.name AS DepartmentName "
+									+ "FROM seller AS s   			INNER JOIN department AS d "
+									+ "ON s.departmentid = d.id  	WHERE s.id = ?");
 			pst.setInt(1, id);
 			rs = pst.executeQuery();
 			
-			if (rs.next()) {
-				String name = rs.getString("Name");
-				String email = rs.getString("Email");
-				Date birthDate = rs .getDate("birthDate");
-				Double baseSalary = rs.getDouble("BaseSalary");
-				Department department = new Department(rs.getInt("DepartmentId"), rs.getString("DepartmentName"));
-				
-				return new Seller(id, name, email, birthDate, baseSalary, department);
-			}
+			if (rs.next()) 
+				return instantiateSeller(rs);
 			
 			return null;
 			
@@ -64,11 +57,26 @@ public class SellerDAOJDBC implements SellerDAO {
 			DB.closeResultSet(rs);
 			DB.closeStatement(pst);
 		}
-		
 	}
 
 	@Override
 	public List<Seller> findAll(Integer id) {
 		return null;
+	}
+	
+	
+	private Seller instantiateSeller (ResultSet rs) throws SQLException {
+		Integer id = rs.getInt("Id");
+		String name = rs.getString("Name");
+		String email = rs.getString("Email");
+		Date birthDate = rs .getDate("birthDate");
+		Double baseSalary = rs.getDouble("BaseSalary");
+		Department department = instantiateDepartment(rs);
+		
+		return new Seller(id, name, email, birthDate, baseSalary, department);
+	}
+	
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		return new Department(rs.getInt("DepartmentId"), rs.getString("DepartmentName"));		
 	}
 }

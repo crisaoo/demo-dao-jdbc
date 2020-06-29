@@ -13,7 +13,7 @@ public class Program {
 		Locale.setDefault(Locale.US);
 
 		SellerDAO sellerDAO = DAOFactory.createSellerDAO();
-		Seller seller = sellerDAO.findById(3);
+		Seller seller = sellerDAO.findById(7);
 		System.out.println(seller);
 		
 		DB.closeConnection();
