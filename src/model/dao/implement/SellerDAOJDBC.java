@@ -61,7 +61,42 @@ public class SellerDAOJDBC implements SellerDAO {
 	
 	@Override
 	public void update(Seller obj) {
+		PreparedStatement pst = null;
 		
+		try {
+			conn.setAutoCommit(false);
+			
+			pst = conn.prepareStatement("update seller "
+							+ "set name = ?, email = ?, birthDate = ?, baseSalary = ?, departmentId = ? "
+							+ "where id = ?");
+			pst.setString(1, obj.getName());
+			pst.setString(2, obj.getEmail());
+			pst.setDate(3, new Date (obj.getBirthDate().getTime()));
+			pst.setDouble(4, obj.getBaseSalary());
+			pst.setInt(5, obj.getDepartment().getId());
+			pst.setInt(6, obj.getId());
+			
+			int rowsAffected = pst.executeUpdate();
+
+			if (rowsAffected == 0)
+				throw new SQLException("Error: ID not found.");				
+			if (rowsAffected > 1)
+				throw new SQLException("Error: Safe update is enabled.");
+			
+			conn.commit();
+		}
+		catch(SQLException e){
+			try {
+				conn.rollback();
+			}
+			catch(SQLException f) {
+				f.printStackTrace();
+			}
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(pst);
+		}
 	}
 
 	@Override

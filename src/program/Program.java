@@ -36,12 +36,17 @@ public class Program {
 //		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
 //		Seller seller = new Seller(null, "Cassio Costa", "cassio298@hotmail.com", sdf.parse("27/07/1996"), 1500.0, new Department(2, null));
 //		sellerDAO.insert(seller);
+				
 		
-		
-		/*Test 6: Delete*/
-		sellerDAO.deleteById(22);
+		/*Test 5: Delete*/
+		//sellerDAO.deleteById(6);
 	
 		
+		/*Test 6: Update*/
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+		Seller seller = new Seller(77, "Cassio Costa", "cassio298@hotmail.com", sdf.parse("27/07/1996"), 2500.0, new Department(2, null));
+		sellerDAO.update(seller);
+
 		DB.closeConnection();
 	}
 }
