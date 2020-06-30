@@ -1,5 +1,7 @@
 package program;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -11,7 +13,7 @@ import model.entities.Seller;
 
 public class Program {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		Locale.setDefault(Locale.US);
 		SellerDAO sellerDAO = DAOFactory.createSellerDAO();
 
@@ -21,13 +23,19 @@ public class Program {
 
 		
 		/*Test 2: Find By Department*/
-//		List<Seller> sellers = sellerDAO.findByDepartment(new Department(2, "Computers"));
+//		List<Seller> sellers = sellerDAO.findByDepartment(new Department(2, null));
 //		sellers.forEach(System.out::println);
 		
 		
-		/*Test 3: Find All*/		//ERROOOOOOOOO
-		List<Seller> allSellers = sellerDAO.findAll();
-		allSellers.forEach(System.out::println);
+		/*Test 3: Find All*/		
+//		List<Seller> allSellers = sellerDAO.findAll();
+//		allSellers.forEach(System.out::println);
+		
+		
+		/*Test 4: Insert*/
+//		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+//		Seller seller = new Seller(null, "Cassio Costa", "cassio298@hotmail.com", sdf.parse("27/07/1996"), 1500.0, new Department(2, null));
+//		sellerDAO.insert(seller);
 		
 		DB.closeConnection();
 	}
