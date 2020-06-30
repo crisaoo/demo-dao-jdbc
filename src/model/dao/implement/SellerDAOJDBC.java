@@ -66,7 +66,34 @@ public class SellerDAOJDBC implements SellerDAO {
 
 	@Override
 	public void deleteById(Integer id) {
+		PreparedStatement pst = null;
 		
+		try {
+			conn.setAutoCommit(false);
+			
+			pst = conn.prepareStatement("delete from seller where id = ?");
+			pst.setInt(1, id);
+			int rowsAffected = pst.executeUpdate();
+			
+			if (rowsAffected == 0)
+				throw new SQLException("Error: ID not found.");				
+			if (rowsAffected > 1)
+				throw new SQLException("Error: Safe update is enabled.");
+			
+			conn.commit();
+		}
+		catch(SQLException e) {
+			try {
+				conn.rollback();
+			}
+			catch(SQLException f) {
+				f.printStackTrace();
+			}
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(pst);
+		}
 	}
 
 	@Override
