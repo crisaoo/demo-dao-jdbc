@@ -44,7 +44,7 @@ public class Program {
 		
 		/*Test 6: Update*/
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
-		Seller seller = new Seller(77, "Cassio Costa", "cassio298@hotmail.com", sdf.parse("27/07/1996"), 2500.0, new Department(2, null));
+		Seller seller = new Seller(8, "Cassio Costa", "cassio298@hotmail.com", sdf.parse("27/07/1996"), 2500.0, new Department(2, null));
 		sellerDAO.update(seller);
 
 		DB.closeConnection();
