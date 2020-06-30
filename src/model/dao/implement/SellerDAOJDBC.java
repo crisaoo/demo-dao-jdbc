@@ -45,6 +45,7 @@ public class SellerDAOJDBC implements SellerDAO {
 				if(rs.next()) {
 					obj.setId(rs.getInt(1));
 				}
+				DB.closeResultSet(rs);
 			}
 			else
 				throw new DbException("Unexpected error! No rows affected.");
