@@ -5,8 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -95,8 +98,39 @@ public class SellerDAOJDBC implements SellerDAO {
 	}
 	
 	@Override
-	public List<Seller> findAll(Integer id) {
-		return null;
+	public List<Seller> findAll() {
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			pst = conn.prepareStatement("select seller.*, department.name as DepartmentName "
+						+ "from seller join department "
+						+ "on seller.departmentid = department.id order by seller.id");
+			
+			rs = pst.executeQuery();
+			
+			List <Seller> allSellers = new ArrayList<>();
+			Map<Integer, Department> departments = new HashMap<>();
+			
+			while(rs.next()) {
+				int key = rs.getInt("departmentId");
+				
+				if (!departments.containsKey(key)) {
+					departments.put(key, instantiateDepartment(rs));
+				}
+				
+				allSellers.add(instantiateSeller(rs, departments.get(key)));
+			}
+			
+			return allSellers;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeResultSet(rs);
+			DB.closeStatement(pst);
+		}
 	}
 	
 	
