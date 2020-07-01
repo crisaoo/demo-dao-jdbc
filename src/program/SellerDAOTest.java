@@ -35,6 +35,7 @@ public class SellerDAOTest {
 //		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
 //		Seller seller = new Seller(null, "Cassio Costa", "cassio298@hotmail.com", sdf.parse("27/07/1996"), 1500.0, new Department(2, null));
 //		sellerDAO.insert(seller);
+//		System.out.println(seller);
 				
 		
 		/*Test 5: Delete*/

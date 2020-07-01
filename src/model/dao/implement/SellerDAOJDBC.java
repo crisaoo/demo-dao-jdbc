@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import db.DB;
-import db.DbException;
+import db.DBException;
 import model.dao.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
@@ -48,10 +48,10 @@ public class SellerDAOJDBC implements SellerDAO {
 				DB.closeResultSet(rs);
 			}
 			else
-				throw new DbException("Unexpected error! No rows affected.");
+				throw new DBException("Unexpected error! No rows affected.");
 		}
 		catch(SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DBException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(pst);
@@ -92,7 +92,7 @@ public class SellerDAOJDBC implements SellerDAO {
 			catch(SQLException f) {
 				f.printStackTrace();
 			}
-			throw new DbException(e.getMessage());
+			throw new DBException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(pst);
@@ -124,7 +124,7 @@ public class SellerDAOJDBC implements SellerDAO {
 			catch(SQLException f) {
 				f.printStackTrace();
 			}
-			throw new DbException(e.getMessage());
+			throw new DBException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(pst);
@@ -150,7 +150,7 @@ public class SellerDAOJDBC implements SellerDAO {
 			return null;
 		} 
 		catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DBException(e.getMessage());
 		} 
 		finally {
 			DB.closeResultSet(rs);
@@ -181,7 +181,7 @@ public class SellerDAOJDBC implements SellerDAO {
 			return sellers;
 		} 
 		catch(SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DBException(e.getMessage());
 		} 
 		finally {
 			DB.closeResultSet(rs);
@@ -217,7 +217,7 @@ public class SellerDAOJDBC implements SellerDAO {
 			return allSellers;
 		}
 		catch(SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DBException(e.getMessage());
 		}
 		finally {
 			DB.closeResultSet(rs);

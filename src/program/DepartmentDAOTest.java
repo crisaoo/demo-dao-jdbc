@@ -16,8 +16,13 @@ public class DepartmentDAOTest {
 //		System.out.println(department);
 		
 		/*Test 2: Find All*/
-		List<Department> allDepartments = departmentDAO.findAll();
-		allDepartments.forEach(System.out::println);
+//		List<Department> allDepartments = departmentDAO.findAll();
+//		allDepartments.forEach(System.out::println);
+		
+		/*Test 3: Insert*/
+		Department department = new Department(null, "Cosmetics");
+		departmentDAO.insert(department);
+		System.out.println(department);
 		
 		DB.closeConnection();
 	}
