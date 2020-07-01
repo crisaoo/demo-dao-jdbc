@@ -12,23 +12,23 @@ public class DepartmentDAOTest {
 		DepartmentDAO departmentDAO = DAOFactory.createDepartmentDAO();
 		
 		/*Test 1: Find By Id*/
-//		Department department = departmentDAO.findById(1);
-//		System.out.println(department);
+		Department department = departmentDAO.findById(1);
+		System.out.println(department);
 		
 		/*Test 2: Find All*/
-//		List<Department> allDepartments = departmentDAO.findAll();
-//		allDepartments.forEach(System.out::println);
+		List<Department> allDepartments = departmentDAO.findAll();
+		allDepartments.forEach(System.out::println);
 		
 		/*Test 3: Insert*/
-//		Department department = new Department(null, "Cosmetics");
-//		departmentDAO.insert(department);
-//		System.out.println(department);
+		department = new Department(null, "Cosmetics");
+		departmentDAO.insert(department);
+		System.out.println(department);
 		
 		/*Test 4: Delete*/
-//		departmentDAO.deleteById(6);
+		departmentDAO.deleteById(6);
 		
 		/*Test 5: Update*/
-		Department department = new Department(5, "Cosmetics");
+		department = new Department(5, "Cosmetics");
 		departmentDAO.update(department);
 		
 		DB.closeConnection();

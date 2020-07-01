@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class DB {
-
 	private static Connection conn = null;
 	
 	public static Connection getConnection() {
@@ -31,7 +30,8 @@ public class DB {
 		if (conn != null) {
 			try {
 				conn.close();
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) {
 				throw new DBException(e.getMessage());
 			}
 		}
@@ -48,11 +48,13 @@ public class DB {
 		}
 	}
 	
+	
 	public static void closeStatement(Statement st) {
 		if (st != null) {
 			try {
 				st.close();
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) {
 				throw new DBException(e.getMessage());
 			}
 		}
@@ -62,7 +64,8 @@ public class DB {
 		if (rs != null) {
 			try {
 				rs.close();
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) {
 				throw new DBException(e.getMessage());
 			}
 		}
