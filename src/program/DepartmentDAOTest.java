@@ -1,5 +1,7 @@
 package program;
 
+import java.util.List;
+
 import db.DB;
 import model.dao.DAOFactory;
 import model.dao.DepartmentDAO;
@@ -10,8 +12,12 @@ public class DepartmentDAOTest {
 		DepartmentDAO departmentDAO = DAOFactory.createDepartmentDAO();
 		
 		/*Test 1: Find By Id*/
-		Department department = departmentDAO.findById(1);
-		System.out.println(department);
+//		Department department = departmentDAO.findById(1);
+//		System.out.println(department);
+		
+		/*Test 2: Find All*/
+		List<Department> allDepartments = departmentDAO.findAll();
+		allDepartments.forEach(System.out::println);
 		
 		DB.closeConnection();
 	}
