@@ -11,8 +11,7 @@ import model.dao.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
-public class Program {
-
+public class SellerDAOTest {
 	public static void main(String[] args) throws ParseException {
 		Locale.setDefault(Locale.US);
 		SellerDAO sellerDAO = DAOFactory.createSellerDAO();

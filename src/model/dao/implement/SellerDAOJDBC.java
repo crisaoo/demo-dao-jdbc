@@ -148,7 +148,6 @@ public class SellerDAOJDBC implements SellerDAO {
 				return instantiateSeller(rs);
 			
 			return null;
-			
 		} 
 		catch (SQLException e) {
 			throw new DbException(e.getMessage());
