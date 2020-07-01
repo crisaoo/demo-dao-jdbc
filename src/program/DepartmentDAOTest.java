@@ -20,9 +20,12 @@ public class DepartmentDAOTest {
 //		allDepartments.forEach(System.out::println);
 		
 		/*Test 3: Insert*/
-		Department department = new Department(null, "Cosmetics");
-		departmentDAO.insert(department);
-		System.out.println(department);
+//		Department department = new Department(null, "Cosmetics");
+//		departmentDAO.insert(department);
+//		System.out.println(department);
+		
+		/*Test 4: Delete*/
+		departmentDAO.deleteById(6);
 		
 		DB.closeConnection();
 	}
