@@ -74,8 +74,7 @@ public class SellerDAOJDBC implements SellerDAO {
 			pst.setDate(3, new Date (obj.getBirthDate().getTime()));
 			pst.setDouble(4, obj.getBaseSalary());
 			pst.setInt(5, obj.getDepartment().getId());
-			pst.setInt(6, obj.getId());
-			
+			pst.setInt(6, obj.getId());		
 			int rowsAffected = pst.executeUpdate();
 
 			if (rowsAffected == 0)

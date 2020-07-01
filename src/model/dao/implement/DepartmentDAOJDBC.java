@@ -49,7 +49,35 @@ public class DepartmentDAOJDBC implements DepartmentDAO{
 
 	@Override
 	public void update(Department obj) {
+		PreparedStatement pst = null;
 		
+		try {
+			conn.setAutoCommit(false);
+			
+			pst = conn.prepareStatement("update department set name = ? where id = ?");
+			pst.setString(1, obj.getName());
+			pst.setInt(2, obj.getId());
+			int rowsAffected = pst.executeUpdate();
+			
+			if (rowsAffected == 0)
+				throw new SQLException("Error: ID not found.");				
+			if (rowsAffected > 1)
+				throw new SQLException("Error: Safe update is enabled.");
+			
+			conn.commit();
+		}
+		catch (SQLException e) {
+			try {
+				conn.rollback();
+			}
+			catch (SQLException f) {
+				f.printStackTrace();
+			}
+			throw new DBException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(pst);
+		}
 	}
 
 	@Override

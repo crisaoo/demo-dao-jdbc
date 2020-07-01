@@ -25,7 +25,11 @@ public class DepartmentDAOTest {
 //		System.out.println(department);
 		
 		/*Test 4: Delete*/
-		departmentDAO.deleteById(6);
+//		departmentDAO.deleteById(6);
+		
+		/*Test 5: Update*/
+		Department department = new Department(5, "Cosmetics");
+		departmentDAO.update(department);
 		
 		DB.closeConnection();
 	}
